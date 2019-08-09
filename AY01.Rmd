@@ -1,0 +1,119 @@
+---
+title: "Introducción a la estadística con R"
+author: "Amílcar José Escobedo Pérez"
+output:
+  prettydoc::html_pretty:
+    theme: hpstr
+    highlight: github
+    math: katex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ <h2 class="chapterHead"><span class="titlemark">Sesión&#x00A0;1:</span><br /><a 
+ id="x1-10001"></a>Instalando R y RStudio</h2>
+ 
+Antes de comenzar a ver aplicaciones vamos a aprender a instalar **R** y **R studio**.
+
+
+**R** es un lenguaje de programación que se desarrolló precisamente para aplicaciones estadísticas y es un software de código abierto lo que quiere decir que cualquiera puede descargarlo sin ningún costo modificarlo, distribuirlo y crear sus propios paquetes y compartirlos.
+**R studio** es una aplicación qué sirve para crear y editar de manera más eficiente scripts de **R** también otro tipo de documentos que incluyan código de **R** o simplemente html e incluso LaTeX.
+
+#### Para instalar **R** ir a la siguiente página:
+
+![](R-site.png)
+
+#### Ahora, para instalar **R Studio** ir a:
+
+![](RStudio-site.png)
+
+
+### Descargar y llamar paquetes:
+
+Una vez que ya se tiene instalado **R** y **R Studio** en la máquina lo que sigue es aprender a descargar librerías y paquetes al entorno de trabajo.
+
+La forma de descargar un paquete o una librería es mediante la función install package y entre paréntesis y comillas escribir el nombre del paquete o librería que Uno desea instalar.
+
+Asi
+```{r,eval=FALSE}
+install.packages("stats")
+```
+
+Para llamar un paquete al entrono de trabajo:
+```{r}
+require(stats)
+```
+
+#### Paquetes útiles
+
+Los siguiente son paquetes que usaremos próximamente:
+
+* **dplyr**
+* **stats**
+* **snpar**
+* **BSDA**
+* **randtests**
+
+Para obtener información a cerca de un paquete ya descargado:
+```{r,eval=TRUE}
+library(help = "stats")
+```
+
+#### Asignar valores y operar con variables
+
+```{r}
+x<-c(1,2,3)
+x
+y=c(1,2,3,4)
+y
+
+z<-c(4:6)
+z
+
+x*z
+x+z
+z/x
+
+exp(x)
+t(x)%*%z
+x%*%t(z)
+```
+
+#### Distribuciones de Probabilidad
+
+![](DistriR.png)
+
+A continuación se muestra un ejemplo de cómo generar muestras de distribuciones, calcular PDF's y CDF's para variables aleatorias:
+
+```{r}
+rbinom(10,3,0.5)
+
+rnorm(4,mean = 15,sd = 2)
+pnorm(15,mean = 15,sd = 2)
+dnorm(15,mean = 15,sd = 2)
+```
+
+
+#### Análisis preliminar y visualización de datos
+
+```{r}
+x<-rexp(20,rate = 1/5)
+x
+
+summary(x)
+mean(x)
+var(x)
+quantile(x,probs = c(0.5,0.75))
+
+plot(x,ylab = "Valor de x",xlab = "No. de observación",col="blue")
+hist(x)
+```
+
+
+**Tip para la vida:** Para hacer el análisis preliminar de bases de datos grandes usar **DataExplorer**.
+```{r,warning=FALSE,message=FALSE}
+require(DataExplorer)
+```
+
